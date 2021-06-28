@@ -46,7 +46,7 @@ public interface IApiService {
 	
 	int deleteRulesPerseo(String id);
 	
-	
+	void notifyRabbitmq(String serverit, String message);
 
 	
 

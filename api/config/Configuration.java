@@ -26,6 +26,8 @@ public class Configuration {
     @Value("${local.url:}")
     private String localUrl;
     
+    @Value("${spring.rabbitmq.portlocal.url:}")
+    private String rabbitmqPort;
    
     
     public Configuration() {
@@ -47,11 +49,23 @@ public class Configuration {
         this.localUrl = localUrl;
     }
 
+    
+    
+    public void setRabbitPort(String rabbitmqPort) {
+        this.rabbitmqPort = rabbitmqPort;
+    }
+    
+    public String getRabbitPort() {
+        return rabbitmqPort;
+    }
+    
+    
     @Override
     public String toString() {
         return "Configuration{" +
                ", remoteUrl='" + remoteUrl + '\'' +
                ", localUrl='" + localUrl + '\'' +
+               ", rabbitmqPort='"+ rabbitmqPort + '\''+
                '}';
     }
 }

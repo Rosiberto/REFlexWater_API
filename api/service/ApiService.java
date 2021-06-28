@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.config.Configuration;
+import com.api.messageria.SendMessage;
 import com.api.util.Util;
 
 
@@ -28,7 +29,8 @@ public class ApiService implements IApiService{
 
 	@Autowired
 	protected Configuration configuration;
-
+	
+	private SendMessage sendMessage;
 
 
 	@Override
@@ -853,6 +855,12 @@ public class ApiService implements IApiService{
 			e.printStackTrace();	            
 		}
 		return responseCode;
+	}
+
+	@Override
+	public void notifyRabbitmq(String severit, String message) {
+
+		sendMessage.pushMessage(severit, message);
 	}
 
 	

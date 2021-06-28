@@ -69,7 +69,7 @@ public class ApiContollerPublic {
 	
 	//lista uma entidade do orion de acordo com o id passado
 		@ResponseStatus(HttpStatus.OK)
-		@RequestMapping(value = "/entitie/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "/entitie/id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 		@ApiOperation(value="Retorna uma Entidade passando como parâmetro seu identificador")
 		public String getId(@PathVariable(value = "id") String id){
 			return apiService.getEntitieOrionId( id );
@@ -77,8 +77,8 @@ public class ApiContollerPublic {
 		
 	//lista todas as entidades do orion de acordo com o type passado 
 		@ResponseStatus(HttpStatus.OK)
-		@RequestMapping(value = "/entitie/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-		@ApiIgnore
+		@RequestMapping(value = "/entitie/type/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+		@ApiOperation(value="Retorna uma Entidade passando como parâmetro seu Type")
 		public String getType(@PathVariable(value = "type") String type){
 			return apiService.getEntitieOrionType( type );
 		}
@@ -138,5 +138,11 @@ public class ApiContollerPublic {
 			return apiService.deleteRulesPerseo(id);
 		}
 		
+		 @ResponseStatus(HttpStatus.OK)
+		 @RequestMapping(value = "/notify", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+		 @ApiIgnore
+		 public void postMessage(String severit, String payload){
+		    apiService.notifyRabbitmq(severit, payload);	       
+		 }
 				
 }
