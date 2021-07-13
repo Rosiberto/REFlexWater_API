@@ -54,6 +54,11 @@ public class ViewController {
 		return "pages/evento";		
 	}
 	
+	@RequestMapping(value = "notify", method = RequestMethod.GET)
+	public String goNotify(){
+		return "pages/notificacao";		
+	}
+	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String goLogin(){		
 		return "login";		

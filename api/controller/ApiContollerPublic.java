@@ -24,7 +24,8 @@ public class ApiContollerPublic {
 	
 	@Autowired
     private ApiService apiService;
-
+	
+	
 	//verifica se existe uma determinada entidade registrada no orion
 		@ResponseStatus(HttpStatus.OK)
 		@RequestMapping(value = "/entitie/exist/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -45,7 +46,7 @@ public class ApiContollerPublic {
 	//lista todas as entidades registradas no orion
 		@ResponseStatus(HttpStatus.OK)
 		@RequestMapping(value = "/entitie", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-		@ApiOperation(value="Retorna TODAS Entidades registradas")
+		@ApiOperation(value="Retorna TODAS Entidades registradas.")
 		//@ApiOperation(value="Retorna TODAS Entidades registradas", response=Entities.class )
 		public String findAll(){
 			return apiService.getAllEntitieOrion();
@@ -62,7 +63,7 @@ public class ApiContollerPublic {
 	//lista todas as entidades do orion  compactada por type
 		@ResponseStatus(HttpStatus.OK)
 		@RequestMapping(value = "/entitie/key/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-		@ApiOperation(value="Retorna TODAS Entidades passando como parâmetro seu tipo")
+		@ApiOperation(value="Retorna TODAS Entidades passando como parâmetro seu tipo.")
 		public String findAllTypeKeyValues(@PathVariable(value = "type") String type){
 			return apiService.getAllEntitieOrionForTypeKeyValues( type );
 		}
@@ -70,7 +71,7 @@ public class ApiContollerPublic {
 	//lista uma entidade do orion de acordo com o id passado
 		@ResponseStatus(HttpStatus.OK)
 		@RequestMapping(value = "/entitie/id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-		@ApiOperation(value="Retorna uma Entidade passando como parâmetro seu identificador")
+		@ApiOperation(value="Retorna uma Entidade passando como parâmetro seu identificador.")
 		public String getId(@PathVariable(value = "id") String id){
 			return apiService.getEntitieOrionId( id );
 		}
@@ -78,7 +79,7 @@ public class ApiContollerPublic {
 	//lista todas as entidades do orion de acordo com o type passado 
 		@ResponseStatus(HttpStatus.OK)
 		@RequestMapping(value = "/entitie/type/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-		@ApiOperation(value="Retorna uma Entidade passando como parâmetro seu Type")
+		@ApiOperation(value="Retorna uma Entidade passando como parâmetro seu Type.")
 		public String getType(@PathVariable(value = "type") String type){
 			return apiService.getEntitieOrionType( type );
 		}
@@ -94,7 +95,7 @@ public class ApiContollerPublic {
 	//registra uma entidade no orion	
 	    @ResponseStatus(HttpStatus.OK)
 		@RequestMapping(value = "/entitie", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-		@ApiOperation(value="Registra uma Entidade")
+		@ApiOperation(value="Registra uma Entidade.")
 	    public int create(@RequestBody String entidade){
 	        	return apiService.createEntitieOrion( entidade );
 		}
@@ -102,7 +103,7 @@ public class ApiContollerPublic {
 	//atualiza os atributos de uma entidade já criada no orion
 		@ResponseStatus(HttpStatus.OK)
 		@RequestMapping(value = "/entitie/{id}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
-		@ApiOperation(value="Atualiza uma Entidade passando como parâmetros os seus atributos")
+		@ApiOperation(value="Atualiza uma Entidade passando como parâmetros os seus atributos.")
 		public int update(@PathVariable(value = "id") String id, @RequestBody String s){
 		   return apiService.updateEntitieOrion( id, s );
 		}
@@ -110,7 +111,7 @@ public class ApiContollerPublic {
 	//exclui Todas as entidades existentes por tipo
 		@ResponseStatus(HttpStatus.OK)
 		@RequestMapping(value = "/entitie/{type}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-		@ApiOperation(value="Exclui TODAS Entidades passando como parâmetro seu tipo")
+		@ApiOperation(value="Exclui TODAS Entidades passando como parâmetro seu tipo.")
 		public String delete(@PathVariable(value = "type") String type){
 			return apiService.deleteAllEntitieOrionType(type);
 		}
@@ -118,7 +119,7 @@ public class ApiContollerPublic {
 	//lista todas as regras cep
 		@ResponseStatus(HttpStatus.OK)
 		@RequestMapping(value = "/rules", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-		@ApiOperation(value="Retorna TODAS as Regras registradas")
+		@ApiOperation(value="Retorna TODAS as Regras registradas.")
 		public String getRules(){
 			return apiService.getRulesPerseo();
 		}
@@ -133,16 +134,8 @@ public class ApiContollerPublic {
 		
 		@ResponseStatus(HttpStatus.OK)
 		@RequestMapping(value = "/rules/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-		@ApiOperation(value="Exclui uma Regra passando como parâmetro seu ID")
+		@ApiOperation(value="Exclui uma Regra passando como parâmetro seu ID.")
 		public int deleteRule(@PathVariable(value = "id") String id){
 			return apiService.deleteRulesPerseo(id);
-		}
-		
-		 @ResponseStatus(HttpStatus.OK)
-		 @RequestMapping(value = "/notify", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-		 @ApiIgnore
-		 public void postMessage(String severit, String payload){
-		    apiService.notifyRabbitmq(severit, payload);	       
-		 }
-				
+		}	
 }

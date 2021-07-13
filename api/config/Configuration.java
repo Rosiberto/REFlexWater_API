@@ -26,8 +26,11 @@ public class Configuration {
     @Value("${local.url:}")
     private String localUrl;
     
-    @Value("${spring.rabbitmq.portlocal.url:}")
+    @Value("${spring.rabbitmq.port:}")
     private String rabbitmqPort;
+	
+	@Value("${spring.rabbitmq.host:}")
+	private String rabbitmqHost;
    
     
     public Configuration() {
@@ -47,9 +50,7 @@ public class Configuration {
 
     public void setLocalUrl(String localUrl) {
         this.localUrl = localUrl;
-    }
-
-    
+    }    
     
     public void setRabbitPort(String rabbitmqPort) {
         this.rabbitmqPort = rabbitmqPort;
@@ -58,8 +59,7 @@ public class Configuration {
     public String getRabbitPort() {
         return rabbitmqPort;
     }
-    
-    
+        
     @Override
     public String toString() {
         return "Configuration{" +
