@@ -1,4 +1,4 @@
-package com.api.iot;
+package com.api;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.api.*", 
+//							   "com.api.messageria"
 //							   "com.api.controller",					   
 //							   "com.api.service", 
 //							   "com.api.repository",

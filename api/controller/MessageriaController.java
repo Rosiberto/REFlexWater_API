@@ -66,7 +66,7 @@ public class MessageriaController {
 
 		log.info("[I54] Creating directExchange: name={}, routingKey={}", "reflex.water.critical", "critical");
 
-		Exchange ex = ExchangeBuilder.directExchange("reflex.water.critical")
+		Exchange ex = ExchangeBuilder.fanoutExchange("reflex.water.critical")
 				.durable(true)
 				.build();
 
@@ -143,7 +143,7 @@ public class MessageriaController {
 
 		log.info("[I55] Creating directExchange: name={}, routingKey={}", "reflex.water.info", "info");
 
-		Exchange ex = ExchangeBuilder.directExchange("reflex.water.info")
+		Exchange ex = ExchangeBuilder.fanoutExchange("reflex.water.info")
 				.durable(true)
 				.build();
 
@@ -220,7 +220,7 @@ public class MessageriaController {
 
 		log.info("[I56] Creating directExchange: name={}, routingKey={}", "reflex.water.warn", "warn");
 
-		Exchange ex = ExchangeBuilder.directExchange("reflex.water.warn")
+		Exchange ex = ExchangeBuilder.fanoutExchange("reflex.water.warn")
 				.durable(true)
 				.build();
 

@@ -15,7 +15,13 @@ public class UserService implements IUserService{
 	
 	
 	public void saveUser(Usuario user) {
-		userRepositorio.save(user);
+		
+		Usuario usuario = userRepositorio.findByEmail( user.getEmail() );
+			
+		
+		if(usuario == null){
+			userRepositorio.save(user);			
+		}		
 	}
 	
 	public Usuario getLogin(String email) {

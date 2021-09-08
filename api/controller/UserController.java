@@ -36,7 +36,29 @@ public class UserController {
 		//System.out.println(user.getEmail() +" " + user.getSenha());
 		
 		userService.saveUser(user);
+
 		//return "success";
-		return "login";
+		return "login";		
 	}
+	
+	@RequestMapping(value = "userMobile", method = RequestMethod.POST)
+	public String saveMobile(@RequestParam("nome") String nome, @RequestParam("email") String email, @RequestParam("senha") String senha) {
+		
+		System.out.println(nome +" " + senha +" "+email);
+		
+		Usuario user = new Usuario();
+		
+		user.setEmail(email);
+		user.setNome(nome);
+		user.setSenha( new BCryptPasswordEncoder().encode(senha) );
+		
+		//System.out.println(user.getEmail() +" " + user.getSenha());
+		
+		userService.saveUser(user);
+
+		//return "success";
+		return "mobile/login";		
+	}
+
+	
 }

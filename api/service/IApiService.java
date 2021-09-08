@@ -45,4 +45,13 @@ public interface IApiService {
 	int postRulePerseo(String rule);
 	
 	int deleteRulesPerseo(String id);	
+	
+	float valueMinSTH(String id, String type, String attribute, String period);
+	
+	float valueMaxSTH(String id, String type, String attribute, String period);
+	
+	float valueAvgSTH(String id, String type, String attribute, String period);
+	
+	String bruto(String id, String type, String attribute, String limit);
+	
 }

@@ -7,5 +7,6 @@ import com.api.entities.Usuario;
 public interface IUserRepository extends MongoRepository<Usuario, String>{
 
 	Usuario findByEmail(String email);
+		
 	
 }

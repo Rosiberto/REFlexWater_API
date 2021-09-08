@@ -9,53 +9,46 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.api.service.ImplementsUserDetailsService;
+import com.api.service.ImplementsUserDetailsServiceMobile;
 
 @Configuration
-@Order(2)
+@Order(1)
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+public class MobileSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
-	private ImplementsUserDetailsService userDetailsService;
+	private ImplementsUserDetailsServiceMobile userDetailsServiceMobile;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		
 		http
-			.antMatcher("/**")
+			.antMatcher("/mobile/**")
 			.authorizeRequests()
-				.antMatchers("/register",						
-							 "/user",				   							 
+				.antMatchers(//"/mobile/register",						
+							 "/user-mobile",				   							 
 							 "/contact", 
-							 "/v2/api-docs", 
-							 "/swagger-resources",
-							 "/swagger-resources/**",
 							 "/configuration/ui",
 							 "/configuration/security",
 							 "/webjars/**",
-							 "/swagger-ui.html",
-							 "/api/v2/**").permitAll()				
+							 "/api/v2/**").permitAll()			
 				.anyRequest().authenticated()
-			.and().formLogin().loginPage("/login")
-				.defaultSuccessUrl("/", true)
-				.failureUrl("/accessdenied")
+			.and().formLogin().loginPage("/mobile/login")
+				.defaultSuccessUrl("/mobile/page", true)
+				.failureUrl("/mobile/accessdenied")
 			.permitAll()
 			.and().logout()
-				  	.invalidateHttpSession(false)
-				  	.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				  	.logoutSuccessUrl("/login")				  	
-				  	.permitAll();
-	
+					.invalidateHttpSession(false)					
+			.and().logout().logoutUrl("/mobile/logout").logoutSuccessUrl("/mobile/login-mobile")
+			.and().exceptionHandling().accessDeniedPage("/mobile/accessdenied");
+
 		http.csrf().disable();
-	
 	
 		/*
 		http.csrf().disable().authorizeRequests()
-				   				.antMatchers("/register",						
-				   							 "/user",				   							 
+								.antMatchers("/register",
+											 "/user",				   							 
 				   							 "/contact", 
 				   							 "/v2/api-docs", 
 				   							 "/swagger-resources",
@@ -67,21 +60,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				   							 "/api/v2/**").permitAll()
 				   			.anyRequest().authenticated()
 				   			.and().formLogin()
-				   			.loginPage("/login")
-				   			.defaultSuccessUrl("/",true)
+				   			.loginPage("/loginMobile")
+				   			.defaultSuccessUrl("/mobile",true)
 				   			.permitAll()
 				   			.and().logout()
 				   			.invalidateHttpSession(false)
 				   			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				   			.permitAll();
-		
 		*/
 				   			
 	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-		auth.userDetailsService(userDetailsService)
+		auth.userDetailsService(userDetailsServiceMobile)
 		.passwordEncoder(new BCryptPasswordEncoder());
 	}
 
