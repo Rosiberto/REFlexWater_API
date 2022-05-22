@@ -455,8 +455,17 @@ public class ApiService implements IApiService{
 	}
 
 	@Override
-	public int subscribeCygnus() {
+	public int subscribeCygnus(String corpo) {
 
+		System.out.println("corpo-> "+corpo);
+		
+		
+		String[] aux   = corpo.split("=");
+		String   porta = aux[1];//armazena o valor
+		
+		System.out.println("port-> "+porta);
+		
+		
 		HttpResponse response;
 		
 		int responseCode = 0,
@@ -473,12 +482,14 @@ public class ApiService implements IApiService{
 							+"}]}, "
 							+"\"notification\": { "
 							+"\"http\": { "
-							+"\"url\": \"http://cygnus:5051/notify\" }, "
+							+"\"url\": \"http://cygnus:"+porta+"/notify\" }, "
 							+"\"attrsFormat\":\"legacy\"}, "
 							+"\"expires\": \"2050-01-01T14:00:00.00Z\", "
 							+"\"throttling\": 5 "
 							+"}";
 
+		System.out.println("payload --> "+payload);
+		
 		if (existsSubscription() == 0 || existsSubscription() == 2) {
 			try{	
 				HttpClient client = HttpClients.createDefault();
@@ -504,6 +515,8 @@ public class ApiService implements IApiService{
 		}
 		return responseCode;
 	}
+	
+	
 
 	@Override
 	public int subscribePerseo() {

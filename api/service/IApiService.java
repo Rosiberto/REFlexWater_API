@@ -26,7 +26,7 @@ public interface IApiService {
 	
 	int updateEntitieOrion(String id, String s);
 	
-	int subscribeCygnus();
+	int subscribeCygnus(String porta);
 	
 	int subscribePerseo();
 	

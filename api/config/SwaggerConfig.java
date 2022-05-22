@@ -34,7 +34,7 @@ public class SwaggerConfig {
 				.title("REFlex Water Framework")
 				.description("REFlex Water - é um framework de IoT desenvolvido para o gerenciamento inteligente de sistemas de abastecimento e distribuição de água.")
 				.contact(new Contact("Rosiberto Santos", null, "rsg2@cin.ufpe.br"))
-				.version("2021.5.5")
+				.version("2022.1.0")
 				//.license("Apache License Version 2.0")
 				//.licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
 				.build();

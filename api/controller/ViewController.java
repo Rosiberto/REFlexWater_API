@@ -71,9 +71,9 @@ public class ViewController {
 		return "pages/editorcep";		
 	}
 
-	@RequestMapping(value = "event", method = RequestMethod.GET)
+	@RequestMapping(value = "rule", method = RequestMethod.GET)
 	public String goEvent(){
-		return "pages/evento";		
+		return "pages/regra";		
 	}
 
 	@RequestMapping(value = "notify", method = RequestMethod.GET)

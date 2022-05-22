@@ -105,8 +105,9 @@ public class PrivateApiController {
 		//Subscreve os Dados Históricos
 			@ResponseStatus(HttpStatus.OK)
 			@RequestMapping(value = "/subscription/cygnus", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-			public int subscribeHistoricalData(){
-				return apiService.subscribeCygnus();
+			public int subscribeHistoricalData(@RequestBody String porta){
+				System.out.println("controller --> "+porta);
+				return apiService.subscribeCygnus(porta);
 			}
 
 		//Subscreve o CEP
